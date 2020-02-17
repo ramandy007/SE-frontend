@@ -11,6 +11,8 @@ import {
   Container,
   CardImg
 } from "reactstrap";
+import { Link } from "react-router-dom";
+import UploadModal from "../Components/Modals";
 
 const container_style = {
   margin: "5%"
@@ -27,7 +29,7 @@ const Admin = props => {
             </CardHeader>
             <CardBody className="text-center">
               <CardText>electives list placeholder</CardText>
-              <Button>Upload electives</Button>
+              <UploadModal buttonLabel="upload electives list " />
             </CardBody>
           </Card>
         </Col>
@@ -38,7 +40,9 @@ const Admin = props => {
             </CardHeader>
 
             <CardBody className="text-center">
-              <Button>Register Students</Button>
+              <Link to={"/register"}>
+                <Button>Register Students </Button>
+              </Link>
             </CardBody>
             <CardBody className="text-center">
               <Button>Register Teachers</Button>

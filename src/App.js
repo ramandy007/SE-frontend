@@ -27,7 +27,7 @@ function App() {
         />
         <Route
           exact
-          path="/login"
+          path="/"
           name="Login Page"
           render={props => <Login {...props} />}
         />
