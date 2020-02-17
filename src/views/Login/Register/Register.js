@@ -1,7 +1,53 @@
-import React, { Component } from 'react';
-import { Button, Card, CardBody, CardFooter, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import React, { Component } from "react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Col,
+  Container,
+  Form,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Row
+} from "reactstrap";
+
+import register from "../../../Functions/Register";
 
 class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      rollno: "",
+      pass: "",
+      sec: "",
+      sem: ""
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  onChange(e) {
+    // console.log(e.target.value);
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  onSubmit(e) {
+    const user = {
+      name: this.state.name,
+      rollno: this.state.rollno,
+      pass: this.state.pass,
+      sec: this.state.sec,
+      sem: this.state.sem
+    };
+
+    console.log(user);
+
+    register(user);
+    e.preventDefault();
+    this.props.history.replace("/");
+  }
   render() {
     return (
       <div className="app flex-row align-items-center">
@@ -10,23 +56,35 @@ class Register extends Component {
             <Col md="9" lg="7" xl="6">
               <Card className="mx-4">
                 <CardBody className="p-4">
-                  <Form>
+                  <Form onSubmit={this.onSubmit}>
                     <h1>Register</h1>
                     <p className="text-muted">Create student account</p>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
-                        
-                          {/* <i className="icon-user"></i> */}
-                          <InputGroupText>Name</InputGroupText>
-                       
+                        {/* <i className="icon-user"></i> */}
+                        <InputGroupText>Name</InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" placeholder="Student Name" autoComplete="username" />
+                      <Input
+                        type="text"
+                        placeholder="Student Name"
+                        autoComplete="username"
+                        name="name"
+                        value={this.state.name}
+                        onChange={this.onChange}
+                      />
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>Reg.No</InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" placeholder="Registration Number" autoComplete="Registration Number" />
+                      <Input
+                        type="text"
+                        placeholder="Registration Number"
+                        autoComplete="Registration Number"
+                        name="rollno"
+                        value={this.state.rollno}
+                        onChange={this.onChange}
+                      />
                     </InputGroup>
 
                     <InputGroup className="mb-3">
@@ -36,39 +94,52 @@ class Register extends Component {
                           Password
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="password" placeholder="Password" autoComplete="new-password" />
+                      <Input
+                        type="password"
+                        placeholder="Password"
+                        autoComplete="new-password"
+                        name="pass"
+                        value={this.state.pass}
+                        onChange={this.onChange}
+                      />
                     </InputGroup>
-                  
+
                     <InputGroup className="mb-4">
                       <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                        Section
-                        </InputGroupText>
+                        <InputGroupText>Section</InputGroupText>
                       </InputGroupAddon>
-                      <Input type="Text" placeholder="Section" autoComplete="section" maxLength="1" />
+                      <Input
+                        type="Text"
+                        placeholder="Section"
+                        autoComplete="section"
+                        maxLength="1"
+                        name="sec"
+                        value={this.state.sec}
+                        onChange={this.onChange}
+                      />
                     </InputGroup>
-                    
+
                     <InputGroup className="mb-4">
                       <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                        Semester
-                        </InputGroupText>
+                        <InputGroupText>Semester</InputGroupText>
                       </InputGroupAddon>
-                      <Input type="Number" placeholder="Semester" autoComplete="Semester" maxLength="1"  min="1" max="8"/>
+                      <Input
+                        type="Number"
+                        placeholder="Semester"
+                        autoComplete="Semester"
+                        maxLength="1"
+                        min="1"
+                        max="8"
+                        name="sem"
+                        value={this.state.sem}
+                        onChange={this.onChange}
+                      />
                     </InputGroup>
-                    <Button color="success" block>Create Account</Button>
+                    <Button color="success" type="submit" block>
+                      Create Account
+                    </Button>
                   </Form>
                 </CardBody>
-                {/* <CardFooter className="p-4">
-                  <Row>
-                    <Col xs="12" sm="6">
-                      <Button className="btn-facebook mb-1" block><span>facebook</span></Button>
-                    </Col>
-                    <Col xs="12" sm="6">
-                      <Button className="btn-twitter mb-1" block><span>twitter</span></Button>
-                    </Col>
-                  </Row>
-                </CardFooter> */}
               </Card>
             </Col>
           </Row>

@@ -21,9 +21,7 @@ const UploadModal = props => {
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>
-        {buttonLabel}
-      </Button>
+      <Button onClick={toggle}>{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Upload Electives</ModalHeader>
         <ModalBody>
