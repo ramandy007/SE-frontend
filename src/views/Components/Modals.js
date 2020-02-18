@@ -11,13 +11,42 @@ import {
   Input,
   FormText
 } from "reactstrap";
+let csvToJson = require("convert-csv-to-json");
+const fs = require("fs");
 
 const UploadModal = props => {
   const { buttonLabel, className } = props;
 
   const [modal, setModal] = useState(false);
+  const [file, setFile] = useState(false);
+
+  let fileReader;
+
+  const handleFileChosen = file => {
+    fileReader = new FileReader();
+    fileReader.onloadend = write_to_file;
+    fileReader.readAsText(file);
+  };
 
   const toggle = () => setModal(!modal);
+
+  const write_to_file = () => {
+    fs.writeFileSync("./uploaded_CSV.csv", "hello hahah");
+  };
+
+  let onChangeHandler = event => {
+    console.log(event.target.files[0]);
+    setFile(event.target.files[0]);
+    handleFileChosen(event.target.files[0]);
+  };
+
+  let convertJson = () => {
+    let csv_text = fileReader.result;
+    console.log(csv_text);
+    console.log(file.name);
+    let json = csvToJson.fieldDelimiter(",").getJsonFromCsv(file);
+    return json;
+  };
 
   return (
     <div>
@@ -47,7 +76,15 @@ const UploadModal = props => {
             </FormGroup>
             <FormGroup>
               <Label for="electivefile">File</Label>
-              <Input type="file" name="file" id="exampleFile" />
+              <Input
+                type="file"
+                name="file"
+                id="exampleFile"
+                webkitdirectory
+                directory
+                multiple
+                onChange={onChangeHandler}
+              />
               <FormText color="muted">Upload the electives file.</FormText>
             </FormGroup>
             <FormGroup tag="fieldset" name="Department">
