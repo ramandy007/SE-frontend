@@ -11,6 +11,7 @@ import {
   Input,
   FormText
 } from "reactstrap";
+import UploadElectives from "../../Functions/AddElectives";
 import { CSVReader } from "react-papaparse";
 
 const UploadModal = props => {
@@ -36,13 +37,21 @@ const UploadModal = props => {
     this.fileInput.current.click();
   };
 
+  const onSubmit = e => {
+    console.log(file);
+
+    UploadElectives(file);
+    e.preventDefault();
+    toggle();
+  };
+
   return (
     <div>
       <Button onClick={toggle}>{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Upload Electives</ModalHeader>
         <ModalBody>
-          <Form>
+          <Form onSubmit={onSubmit}>
             <FormGroup>
               <Label for="Select Semester">Select Semester</Label>
               <Input type="select" name="Semester" id="Semester Select">
@@ -108,9 +117,9 @@ const UploadModal = props => {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>
+          <Button color="primary" type="submit" onClick={onSubmit}>
             Submit
-          </Button>{" "}
+          </Button>
           <Button color="secondary" onClick={toggle}>
             Cancel
           </Button>
