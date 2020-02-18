@@ -89,7 +89,14 @@ class Login extends Component {
                       </InputGroup>
                       <Row>
                         <Col xs="6">
-                          <Button color="primary" className="px-4">
+                          <Button
+                            color="primary"
+                            className="px-4"
+                            disabled={
+                              this.state.user_name.length == 0 ||
+                              this.state.password.length == 0
+                            }
+                          >
                             Login
                           </Button>
                         </Col>
