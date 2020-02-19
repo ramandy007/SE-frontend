@@ -5,9 +5,9 @@ const register = newUser => {
     .post("/Register", {
       name: newUser.name,
       rollno: newUser.rollno,
-      pass: newUser.password,
-      sec: newUser.section,
-      sem: newUser.semester
+      pass: newUser.pass,
+      sec: newUser.sec,
+      sem: newUser.sem
     })
     .then(res => {
       console.log("Registered");
