@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.scss";
 import Login from "./views/Login/login";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 
 import Navbar from "./views/Components/Navbar";
 import Register from "./views/Login/Register/Register";
@@ -11,7 +11,7 @@ import Admin from "./views/Users/Admin";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Navbar />
       <Switch>
         <Route
@@ -40,7 +40,7 @@ function App() {
 
         {/* <Route path="/" name="Home" render={props => <DefaultLayout {...props}/>} /> */}
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
