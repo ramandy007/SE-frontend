@@ -1,6 +1,7 @@
 {
   "name": "elective-management",
   "version": "0.1.0",
+  "homepage": "https://ramandy007.github.io/SE-frontend/",
   "private": true,
   "dependencies": {
     "@coreui/coreui": "^2.1.12",
