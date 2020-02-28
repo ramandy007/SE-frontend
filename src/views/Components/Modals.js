@@ -11,41 +11,38 @@ import {
   Input,
   FormText
 } from "reactstrap";
-let csvToJson = require("convert-csv-to-json");
-const fs = require("fs");
+import UploadElectives from "../../Functions/AddElectives";
+import { CSVReader } from "react-papaparse";
 
 const UploadModal = props => {
   const { buttonLabel, className } = props;
-
+  let fileInput = React.createRef();
   const [modal, setModal] = useState(false);
   const [file, setFile] = useState(false);
 
-  let fileReader;
-
-  const handleFileChosen = file => {
-    fileReader = new FileReader();
-    fileReader.onloadend = write_to_file;
-    fileReader.readAsText(file);
-  };
-
   const toggle = () => setModal(!modal);
 
-  const write_to_file = () => {
-    fs.writeFileSync("./uploaded_CSV.csv", "hello hahah");
+  const handleReadCSV = data => {
+    console.log("--------------------------------------------------");
+    console.log(data);
+    setFile(data);
+    console.log("--------------------------------------------------");
   };
 
-  let onChangeHandler = event => {
-    console.log(event.target.files[0]);
-    setFile(event.target.files[0]);
-    handleFileChosen(event.target.files[0]);
+  const handleOnError = (err, file, inputElem, reason) => {
+    console.log(err);
   };
 
-  let convertJson = () => {
-    let csv_text = fileReader.result;
-    console.log(csv_text);
-    console.log(file.name);
-    let json = csvToJson.fieldDelimiter(",").getJsonFromCsv(file);
-    return json;
+  const handleImportOffer = () => {
+    this.fileInput.current.click();
+  };
+
+  const onSubmit = e => {
+    console.log(file);
+
+    UploadElectives(file);
+    e.preventDefault();
+    toggle();
   };
 
   return (
@@ -54,7 +51,7 @@ const UploadModal = props => {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Upload Electives</ModalHeader>
         <ModalBody>
-          <Form>
+          <Form onSubmit={onSubmit}>
             <FormGroup>
               <Label for="Select Semester">Select Semester</Label>
               <Input type="select" name="Semester" id="Semester Select">
@@ -76,15 +73,15 @@ const UploadModal = props => {
             </FormGroup>
             <FormGroup>
               <Label for="electivefile">File</Label>
-              <Input
-                type="file"
-                name="file"
-                id="exampleFile"
-                webkitdirectory
-                directory
-                multiple
-                onChange={onChangeHandler}
+              <CSVReader
+                onFileLoaded={handleReadCSV}
+                inputRef={fileInput}
+                // style={{ display: "none" }}
+                onError={handleOnError}
+                configOptions={{ header: true }}
               />
+              {/* <button onClick={handleImportOffer}>Upload</button> */}
+              {/* <Input ref={fileInput} type="file" name="file" id="exampleFile" /> */}
               <FormText color="muted">Upload the electives file.</FormText>
             </FormGroup>
             <FormGroup tag="fieldset" name="Department">
@@ -120,9 +117,9 @@ const UploadModal = props => {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>
+          <Button color="primary" type="submit" onClick={onSubmit}>
             Submit
-          </Button>{" "}
+          </Button>
           <Button color="secondary" onClick={toggle}>
             Cancel
           </Button>

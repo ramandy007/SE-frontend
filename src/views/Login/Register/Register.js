@@ -135,7 +135,18 @@ class Register extends Component {
                         onChange={this.onChange}
                       />
                     </InputGroup>
-                    <Button color="success" type="submit" block>
+                    <Button
+                      color="success"
+                      type="submit"
+                      block
+                      disabled={
+                        this.state.name.length == 0 ||
+                        this.state.rollno.length == 0 ||
+                        this.state.pass.length == 0 ||
+                        this.state.sec.length == 0 ||
+                        this.state.sem.length == 0
+                      }
+                    >
                       Create Account
                     </Button>
                   </Form>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import {
   Button,
   Card,
@@ -34,15 +35,25 @@ class Login extends Component {
   }
 
   onSubmit(e) {
+    if (this.state.user_name === "admin" && this.state.password === "admin") {
+      localStorage.setItem("uid", this.state.user_name);
+      localStorage.setItem("perm", "admin");
+      this.props.history.push("/admin");
+    } else {
+      axios
+        .post("/login", {
+          rollno: this.state.user_name,
+          pass: this.state.password
+        })
+        .then(res => {
+          if (res === true) {
+            localStorage.setItem("uid", this.state.user_name);
+            localStorage.setItem("perm", "student");
+            this.props.history.push("/student");
+          } else alert("wrong password");
+        });
+    }
     e.preventDefault();
-    // this.Auth.login(this.state.user_name, this.state.password)
-    //   .then(res => {
-    //     console.log(res);
-    //     this.props.history.replace("/");
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
   }
 
   render() {
@@ -54,7 +65,7 @@ class Login extends Component {
               <CardGroup>
                 <Card className="p-4">
                   <CardBody>
-                    <Form>
+                    <Form onSubmit={this.onSubmit}>
                       <h1>Login</h1>
                       <p className="text-muted">Sign In to your account</p>
                       <InputGroup className="mb-3">
@@ -89,7 +100,14 @@ class Login extends Component {
                       </InputGroup>
                       <Row>
                         <Col xs="6">
-                          <Button color="primary" className="px-4">
+                          <Button
+                            color="primary"
+                            className="px-4"
+                            disabled={
+                              this.state.user_name.length === 0 ||
+                              this.state.password.length === 0
+                            }
+                          >
                             Login
                           </Button>
                         </Col>
