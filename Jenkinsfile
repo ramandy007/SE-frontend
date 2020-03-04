@@ -9,6 +9,8 @@ pipeline {
       
       }
     }
+    
+    stage("test"){steps {sh 'npm test'}}
         stage('Build') { 
             steps {
                 
