@@ -46,7 +46,9 @@ class Login extends Component {
           pass: this.state.password
         })
         .then(res => {
-          if (res === true) {
+          console.log(res);
+          if (res.data === true) {
+            
             localStorage.setItem("uid", this.state.user_name);
             localStorage.setItem("perm", "student");
             this.props.history.push("/student");
