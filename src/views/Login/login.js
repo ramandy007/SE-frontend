@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "../Login/loginstyle.css";
 import {
   Button,
   Card,
@@ -46,7 +47,9 @@ class Login extends Component {
           pass: this.state.password
         })
         .then(res => {
-          if (res === true) {
+          console.log(res);
+          if (res.data === true) {
+            
             localStorage.setItem("uid", this.state.user_name);
             localStorage.setItem("perm", "student");
             this.props.history.push("/student");
@@ -64,7 +67,7 @@ class Login extends Component {
             <Col md="8">
               <CardGroup>
                 <Card className="p-4">
-                  <CardBody>
+                  <CardBody >
                     <Form onSubmit={this.onSubmit}>
                       <h1>Login</h1>
                       <p className="text-muted">Sign In to your account</p>
@@ -100,7 +103,7 @@ class Login extends Component {
                       </InputGroup>
                       <Row>
                         <Col xs="6">
-                          <Button
+                          <Button 
                             color="primary"
                             className="px-4"
                             disabled={
@@ -121,10 +124,9 @@ class Login extends Component {
                   </CardBody>
                 </Card>
                 <Card
-                  className="text-white bg-primary py-5 d-md-down-none"
-                  style={{ width: "44%" }}
-                >
-                  <CardBody className="text-center">
+                  className="signc"
+                  style={{ width: "44%" }}>
+                  <CardBody className="text-center" >
                     <div>
                       <h2>Sign up</h2>
                       <p>Contact Admin to register a new account.</p>

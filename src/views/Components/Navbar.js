@@ -45,25 +45,11 @@ class Navbars extends Component {
   render() {
     return (
       <div className="animated fadeIn">
-        <Navbar color="info" light expand="md" className="Navbar">
-          <NavbarBrand href="/">EMS</NavbarBrand>
+        <Navbar color="#ffffff" light expand="md" className="Navbar">
+          <NavbarBrand href="/" style={{color:"#fff"}}>Elective Management System</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <UncontrolledDropdown nav inNavbar>
-                {/*Warning: React does not recognize the `inNavbar` prop on a DOM element.*/}
-                {/*waiting for reactstrap@5.0.0-alpha.5*/}
-                <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem>Profile</DropdownItem>
-                  <DropdownItem divider />
-                  <Link to="/">
-                    <DropdownItem>Logout</DropdownItem>
-                  </Link>
-                </DropdownMenu>
-              </UncontrolledDropdown>
             </Nav>
           </Collapse>
         </Navbar>
