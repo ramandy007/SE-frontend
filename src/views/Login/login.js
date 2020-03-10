@@ -30,7 +30,7 @@ class Login extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     // if (this.Auth.loggedIn()) this.props.history.replace("/");
   }
 
