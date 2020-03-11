@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Link, Route, Redirect } from "react-router-dom";
-import axios from "axios";
-import "../Login/loginstyle.css";
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import axios from "axios"
+import "../Login/loginstyle.css"
 import {
   Button,
   Card,
@@ -15,20 +15,20 @@ import {
   InputGroupAddon,
   InputGroupText,
   Row
-} from "reactstrap";
+} from "reactstrap"
 
 class Login extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       user_name: "",
       password: ""
-    };
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
+    }
+    this.onSubmit = this.onSubmit.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value })
   }
   UNSAFE_componentWillMount() {
     // if (this.Auth.loggedIn()) this.props.history.replace("/");
@@ -36,9 +36,12 @@ class Login extends Component {
 
   onSubmit(e) {
     if (this.state.user_name === "admin" && this.state.password === "admin") {
-      localStorage.setItem("uid", this.state.user_name);
-      localStorage.setItem("perm", "admin");
-      this.props.history.push("/admin");
+      localStorage.setItem("uid", this.state.user_name)
+      localStorage.setItem("perm", "admin")
+      this.props.history.push("/admin")
+
+      this.props.setperm("admin")
+      this.props.setname(this.state.user_name)
     } else {
       axios
         .post("/login", {
@@ -46,15 +49,17 @@ class Login extends Component {
           pass: this.state.password
         })
         .then(res => {
-          console.log(res);
+          console.log(res)
           if (res.data === true) {
-            localStorage.setItem("uid", this.state.user_name);
-            localStorage.setItem("perm", "student");
-            this.props.history.push("/student");
-          } else alert("wrong password");
-        });
+            localStorage.setItem("uid", this.state.user_name)
+            localStorage.setItem("perm", "student")
+            this.props.setperm("student")
+            this.props.setname(this.state.user_name)
+            this.props.history.push("/student")
+          } else alert("wrong password")
+        })
     }
-    e.preventDefault();
+    e.preventDefault()
   }
 
   render() {
@@ -144,8 +149,8 @@ class Login extends Component {
           </Row>
         </Container>
       </div>
-    );
+    )
   }
 }
 
-export default Login;
+export default Login

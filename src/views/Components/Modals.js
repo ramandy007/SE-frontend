@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 import {
   Button,
   Modal,
@@ -10,40 +10,36 @@ import {
   Label,
   Input,
   FormText
-} from "reactstrap";
-import UploadElectives from "../../Functions/AddElectives";
-import { CSVReader } from "react-papaparse";
+} from "reactstrap"
+import UploadElectives from "../../Functions/AddElectives"
+import { CSVReader } from "react-papaparse"
 
 const UploadModal = props => {
-  const { buttonLabel, className } = props;
-  let fileInput = React.createRef();
-  const [modal, setModal] = useState(false);
-  const [file, setFile] = useState(false);
+  const { buttonLabel, className } = props
+  let fileInput = React.createRef()
+  const [modal, setModal] = useState(false)
+  const [file, setFile] = useState(false)
 
-  const toggle = () => setModal(!modal);
+  const toggle = () => setModal(!modal)
 
   const handleReadCSV = data => {
-    console.log("--------------------------------------------------");
-    console.log(data);
-    setFile(data);
-    console.log("--------------------------------------------------");
-  };
+    console.log("--------------------------------------------------")
+    console.log(data)
+    setFile(data)
+    console.log("--------------------------------------------------")
+  }
 
   const handleOnError = (err, file, inputElem, reason) => {
-    console.log(err);
-  };
-
-  const handleImportOffer = () => {
-    this.fileInput.current.click();
-  };
+    console.log(err)
+  }
 
   const onSubmit = e => {
-    console.log(file);
+    console.log(file)
 
-    UploadElectives(file);
-    e.preventDefault();
-    toggle();
-  };
+    UploadElectives(file)
+    e.preventDefault()
+    toggle()
+  }
 
   return (
     <div>
@@ -126,7 +122,7 @@ const UploadModal = props => {
         </ModalFooter>
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default UploadModal;
+export default UploadModal

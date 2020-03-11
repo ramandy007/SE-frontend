@@ -10,7 +10,7 @@ import {
   NavLink
 } from "reactstrap"
 
-class Navbars extends Component {
+class NavbarStudent extends Component {
   constructor(props) {
     super(props)
 
@@ -45,7 +45,12 @@ class Navbars extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/login">login</NavLink>
+                <NavLink href="/logout" onClick={localStorage.clear()}>
+                  logout
+                </NavLink>
+                <NavLink href="" onClick={localStorage.clear()}>
+                  profile
+                </NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -55,4 +60,4 @@ class Navbars extends Component {
   }
 }
 
-export default Navbars
+export default NavbarStudent

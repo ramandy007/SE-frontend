@@ -3,7 +3,6 @@ import {
   Button,
   Card,
   CardBody,
-  CardFooter,
   Col,
   Container,
   Form,
@@ -152,11 +151,11 @@ class Register extends Component {
                       type="submit"
                       block
                       disabled={
-                        this.state.name.length == 0 ||
-                        this.state.rollno.length == 0 ||
-                        this.state.pass.length == 0 ||
-                        this.state.sec.length == 0 ||
-                        this.state.sem.length == 0
+                        this.state.name.length === 0 ||
+                        this.state.rollno.length === 0 ||
+                        this.state.pass.length === 0 ||
+                        this.state.sec.length === 0 ||
+                        this.state.sem.length === 0
                       }
                     >
                       Create Account

@@ -1,8 +1,7 @@
-import React from "react";
+import React from "react"
 import {
   Card,
   Button,
-  CardTitle,
   CardText,
   Row,
   Col,
@@ -10,11 +9,11 @@ import {
   CardBody,
   Container,
   CardImg
-} from "reactstrap";
+} from "reactstrap"
 
 const container_style = {
   margin: "5%"
-};
+}
 
 const Student = props => {
   return (
@@ -68,7 +67,7 @@ const Student = props => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default Student;
+export default Student

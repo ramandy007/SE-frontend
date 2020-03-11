@@ -1,12 +1,12 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
 
-const ProtectedRoute = ({ component: Component, user, ...rest }) => {
+const ProtectedRouteStudent = ({ component: Component, user, ...rest }) => {
   return (
     <Route
       {...rest}
       render={props => {
-        if (user === "admin") return <Component {...rest} {...props} />
+        if (user === "student") return <Component {...rest} {...props} />
         else
           return (
             <Redirect
@@ -20,4 +20,4 @@ const ProtectedRoute = ({ component: Component, user, ...rest }) => {
     ></Route>
   )
 }
-export default ProtectedRoute
+export default ProtectedRouteStudent
