@@ -8,6 +8,7 @@ import Navbar from "./views/Components/Navbar";
 import Register from "./views/Login/Register/Register";
 import Student from "./views/Users/Student";
 import Admin from "./views/Users/Admin";
+import Unauthorized from "./views/Users/Unauthorized";
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
           render={props => <Register {...props} />}
         />
 
-        {/* <Route path="/" name="Home" render={props => <DefaultLayout {...props}/>} /> */}
+        <Route exact path="/Unauthorized" component={Unauthorized} />
       </Switch>
     </BrowserRouter>
   );
