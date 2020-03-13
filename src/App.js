@@ -12,6 +12,8 @@ import Admin from "./views/Users/Admin"
 import Unauthorized from "./views/Users/Unauthorized"
 import ProtectedRoute from "./views/Components/ProtectedRoutes"
 import ProtectedRouteStudent from "./views/Components/ProtectedRouteStudent"
+import Home from "../src/views/Components/Home"
+import Logout from "./views/Components/Logout"
 
 function App() {
   const [perm, setPerm] = useState(false)
@@ -30,12 +32,19 @@ function App() {
     <BrowserRouter>
       {navbar()}
       <Switch>
-        {/* <Route
+        <Route
           exact
-          path="/student"
-          name="Student profile page"
-          render={props => <Student {...props} />}
-        /> */}
+          path="/"
+          name="home page"
+          render={props => <Home {...props} />}
+        />
+        <Route
+          exact
+          path="/logout"
+          name="Lgout page"
+          render={props => <Logout {...props} />}
+        />
+
         <ProtectedRouteStudent
           exact
           path="/student"

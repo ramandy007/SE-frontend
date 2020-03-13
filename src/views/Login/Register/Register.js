@@ -125,6 +125,7 @@ class Register extends Component {
                         autoComplete="section"
                         maxLength="1"
                         name="sec"
+                        pattern="^[a-zA-Z]+$"
                         value={this.state.sec}
                         onChange={this.onChange}
                       />

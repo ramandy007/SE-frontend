@@ -38,7 +38,7 @@ class Navbars extends Component {
     return (
       <div className="animated fadeIn">
         <Navbar color="#ffffff" light expand="md" className="Navbar">
-          <NavbarBrand href="/" style={{ color: "#fff" }}>
+          <NavbarBrand style={{ color: "#fff" }}>
             Elective Management System
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />

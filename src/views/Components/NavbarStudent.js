@@ -38,17 +38,25 @@ class NavbarStudent extends Component {
     return (
       <div className="animated fadeIn">
         <Navbar color="#ffffff" light expand="md" className="Navbar">
-          <NavbarBrand href="/" style={{ color: "#fff" }}>
+          <NavbarBrand style={{ color: "#fff" }}>
             Elective Management System
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/logout" onClick={localStorage.clear()}>
+                <NavLink
+                  style={{ color: "#fff" }}
+                  href="/logout"
+                  onClick={localStorage.clear()}
+                >
                   logout
                 </NavLink>
-                <NavLink href="" onClick={localStorage.clear()}>
+                <NavLink
+                  style={{ color: "#fff" }}
+                  href=""
+                  onClick={localStorage.clear()}
+                >
                   profile
                 </NavLink>
               </NavItem>
