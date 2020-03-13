@@ -43,7 +43,6 @@ class Login extends Component {
 
       this.props.setPerm("admin")
       this.props.setName("admin")
-      this.props.setname(this.state.user_name)
     } else {
       axios
         .post("/Login", {
