@@ -15,7 +15,9 @@ import ProtectedRouteStudent from "./views/Components/ProtectedRouteStudent"
 
 function App() {
   const [perm, setPerm] = useState(false)
+  const [studata, setStuData] = useState(null)
   const [name, setName] = useState(null)
+
   const handleLogout = () => {
     localStorage.clear()
   }
@@ -39,8 +41,9 @@ function App() {
           path="/student"
           name=" Student Profile Page"
           component={Student}
+          studata={studata}
           handleLogout={handleLogout}
-          user={localStorage.getItem("uid")}
+          user={studata}
         ></ProtectedRouteStudent>
         {/* <Route
           path="/admin"
@@ -59,10 +62,16 @@ function App() {
           exact
           path="/login"
           name="Login Page"
-          setperm={setPerm}
-          setname={setName}
+          setPerm={setPerm}
+          setName={setName}
+          setStuData={setStuData}
           render={props => (
-            <Login {...props} setperm={setPerm} setname={setName} />
+            <Login
+              {...props}
+              setPerm={setPerm}
+              setStuData={setStuData}
+              setName={setName}
+            />
           )}
         />
         {/* <Route

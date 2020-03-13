@@ -22,7 +22,8 @@ class Login extends Component {
     super(props)
     this.state = {
       user_name: "",
-      password: ""
+      password: "",
+      errmsg: null
     }
     this.onSubmit = this.onSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -40,23 +41,35 @@ class Login extends Component {
       localStorage.setItem("perm", "admin")
       this.props.history.push("/admin")
 
-      this.props.setperm("admin")
+      this.props.setPerm("admin")
+      this.props.setName("admin")
       this.props.setname(this.state.user_name)
     } else {
       axios
-        .post("/login", {
+        .post("/Login", {
           rollno: this.state.user_name,
           pass: this.state.password
         })
         .then(res => {
           console.log(res)
-          if (res.data === true) {
-            localStorage.setItem("uid", this.state.user_name)
+
+          if (res.data === "NO SUCH ROLL NUMBER EXISTS")
+            this.setState({
+              errmsg: "No Such Roll Number Exists",
+              user_name: "",
+              password: ""
+            })
+          else if (res.data === "WRONG PASSWORD")
+            this.setState({ errmsg: "Wrong Password Try Again", password: "" })
+          else {
+            this.props.setStuData(res.data)
+
+            localStorage.setItem("uid", res.data.name)
             localStorage.setItem("perm", "student")
-            this.props.setperm("student")
-            this.props.setname(this.state.user_name)
+            this.props.setPerm("student")
+            this.props.setName(this.state.user_name)
             this.props.history.push("/student")
-          } else alert("wrong password")
+          }
         })
     }
     e.preventDefault()
@@ -83,7 +96,7 @@ class Login extends Component {
                         <Input
                           name="user_name"
                           type="text"
-                          placeholder="Username"
+                          placeholder="RollNo"
                           autoComplete="username"
                           value={this.state.user_name}
                           onChange={this.onChange}
@@ -129,18 +142,10 @@ class Login extends Component {
                 <Card className="signc" style={{ width: "44%" }}>
                   <CardBody className="text-center">
                     <div>
-                      <h2>Sign up</h2>
-                      <p>Contact Admin to register a new account.</p>
-                      <Link to="/register">
-                        <Button
-                          color="primary"
-                          className="mt-3"
-                          active
-                          tabIndex={-1}
-                        >
-                          Email Now!
-                        </Button>
-                      </Link>
+                      <h2>
+                        {" "}
+                        {this.state.errmsg ? this.state.errmsg : "Welcome"}
+                      </h2>
                     </div>
                   </CardBody>
                 </Card>

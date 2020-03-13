@@ -31,10 +31,10 @@ const Student = props => {
           <Card>
             <CardHeader tag="h4">Details :</CardHeader>
             <CardBody>
-              <CardText>Name :placeholder</CardText>
-              <CardText>Roll.No: placeholder</CardText>
-              <CardText>Section:placeholder</CardText>
-              <CardText>Semester:placeholder</CardText>
+              <CardText>Name :{props.studata.name}</CardText>
+              <CardText>Roll.No: {props.studata.rollno}</CardText>
+              <CardText>Section:{props.studata.section}</CardText>
+              <CardText>Semester:{props.studata.semester}</CardText>
               <CardText>Department:placeholder</CardText>
             </CardBody>
           </Card>

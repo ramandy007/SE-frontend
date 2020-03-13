@@ -1,12 +1,12 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
 
-const ProtectedRouteStudent = ({ component: Component, user, ...rest }) => {
+const ProtectedRouteStudent = ({ component: Component, studata, ...rest }) => {
   return (
     <Route
       {...rest}
       render={props => {
-        if (user === "student") return <Component {...rest} {...props} />
+        if (studata) return <Component {...rest} {...props} studata={studata} />
         else
           return (
             <Redirect
