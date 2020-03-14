@@ -9,26 +9,26 @@ pipeline {
       
       }
     }
-//    stage('SonarQube Analysis') {
+   stage('SonarQube Analysis') {
      
-//     // steps{sh "/home/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarqubescanner/bin/sonar-scanner -Dsonar.host.url=http://127.0.0.1:9000 -Dsonar.projectName=Se_front_end_jenkins -Dsonar.projectVersion=1.0 -Dsonar.projectKey=jenkins_front_end:app -Dsonar.sources=/var/lib/jenkins/workspace/$JOB_NAME "}
-//     steps{
-//       // def scannerHome=tool  'Sonar_Qube';
-//       tool name: 'Sonar_Qube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+    // steps{sh "/home/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarqubescanner/bin/sonar-scanner -Dsonar.host.url=http://127.0.0.1:9000 -Dsonar.projectName=Se_front_end_jenkins -Dsonar.projectVersion=1.0 -Dsonar.projectKey=jenkins_front_end:app -Dsonar.sources=/var/lib/jenkins/workspace/$JOB_NAME "}
+    steps{
+      // def scannerHome=tool  'Sonar_Qube';
+      tool name: 'Sonar_Qube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
 
-//      withSonarQubeEnv(credentialsId: 'sonarqube-secret',installationName:'sonarqube') {
-//        sh "echo ${name}";
-//       sh "${name}/bin/sonar-scanner -Dsonar.login=admin -Dsonar.password=admin"};
-//     }
+     withSonarQubeEnv(credentialsId: 'sonarqube-secret',installationName:'sonarqube') {
+       sh "echo ${name}";
+      sh "${tool}/bin/sonar-scanner -Dsonar.login=admin -Dsonar.password=admin"};
+    }
 
-// }
+}
         
 
-        stage('SonarQube analysis') {
-    steps{ scannerHome = tool 'Sonar_Qube';
-    withSonarQubeEnv('sonarqube') { // If you have configured more than one global server connection, you can specify its name
-      sh "${scannerHome}/bin/sonar-scanner"}
-    }}
+    //     stage('SonarQube analysis') {
+    // steps{ scannerHome = tool 'Sonar_Qube';
+    // withSonarQubeEnv('sonarqube') { // If you have configured more than one global server connection, you can specify its name
+    //   sh "${scannerHome}/bin/sonar-scanner"}
+    // }}
     
     stage("test"){steps {sh 'npm test'}}
         stage('Build') { 
