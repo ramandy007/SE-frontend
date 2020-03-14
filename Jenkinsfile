@@ -9,7 +9,7 @@ pipeline {
     // steps{sh "/home/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarqubescanner/bin/sonar-scanner -Dsonar.host.url=http://127.0.0.1:9000 -Dsonar.projectName=Se_front_end_jenkins -Dsonar.projectVersion=1.0 -Dsonar.projectKey=jenkins_front_end:app -Dsonar.sources=/var/lib/jenkins/workspace/$JOB_NAME "}
     steps{
       // def scannerHome=tool  'Sonar_Qube';
-      def home= tool name: 'Sonar_Qube', type: 'hudson.plugins.sonar.SonarRunnerInstallation';
+      env.home= tool name: 'Sonar_Qube', type: 'hudson.plugins.sonar.SonarRunnerInstallation';
 
      withSonarQubeEnv(credentialsId: 'sonarqube-secret',installationName:'sonarqube') {
       //  println home;
