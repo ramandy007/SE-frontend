@@ -16,7 +16,7 @@ pipeline {
       // def scannerHome=tool  'Sonar_Qube';
       tool name: 'Sonar_Qube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
 
-     withSonarQubeEnv(credentialsId: 'sonarqube-secret') {
+     withSonarQubeEnv(credentialsId: 'sonarqube-secret',installationName:'sonarqube') {
       sh "${name}/bin/sonar-runner -Dsonar.login=admin -Dsonar.password=admin"}
     }
 
