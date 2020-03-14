@@ -1,7 +1,9 @@
+
 import React, { useState } from "react"
 import "./App.scss"
 import Login from "./views/Login/login"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
+
 
 import Navbar from "./views/Components/Navbar"
 import NavbarAdmin from "./views/Components/NavbarAdmin"
@@ -30,8 +32,10 @@ function App() {
     else return <Navbar />
   }
   return (
+
     <BrowserRouter>
       {navbar()}
+
       <Switch>
         <Route
           exact
@@ -111,8 +115,10 @@ function App() {
         {console.log(localStorage.getItem("uid"))}
         <Route exact path="/Unauthorized" component={Unauthorized} />
       </Switch>
+
     </BrowserRouter>
-  )
+  );
+
 }
 
 export default App
