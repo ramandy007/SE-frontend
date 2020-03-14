@@ -18,7 +18,7 @@ pipeline {
 
      withSonarQubeEnv(credentialsId: 'sonarqube-secret',installationName:'sonarqube') {
        println tool;
-       println name;
+       
       sh "${tool}/bin/sonar-scanner -Dsonar.login=admin -Dsonar.password=admin"};
     }
 
