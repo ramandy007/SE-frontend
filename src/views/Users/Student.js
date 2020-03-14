@@ -11,6 +11,8 @@ import {
   CardImg
 } from "reactstrap"
 
+import student_image from "../../assets/student.jpeg"
+
 const container_style = {
   margin: "5%"
 }
@@ -21,10 +23,7 @@ const Student = props => {
       <Row className="justify-content-center">
         <Col md="4">
           <Card>
-            <CardImg
-              src="/home/darknorth/Software engineering/elective-management/assets/proof.jpeg"
-              alt="Card image cap"
-            ></CardImg>
+            <CardImg src={student_image} alt="Card image cap"></CardImg>
           </Card>
         </Col>
         <Col md="6" className="text-center">
@@ -35,7 +34,10 @@ const Student = props => {
               <CardText>Roll.No: {props.studata.rollno}</CardText>
               <CardText>Section:{props.studata.section}</CardText>
               <CardText>Semester:{props.studata.semester}</CardText>
-              <CardText>Department:placeholder</CardText>
+              <CardText>
+                Department:
+                {props.studata.rollno.match(/\D\D\D/g)[0].toUpperCase()}
+              </CardText>
             </CardBody>
           </Card>
         </Col>
