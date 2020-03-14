@@ -17,7 +17,8 @@ pipeline {
       tool name: 'Sonar_Qube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
 
      withSonarQubeEnv(credentialsId: 'sonarqube-secret',installationName:'sonarqube') {
-       sh "echo ${name}";
+       println tool;
+       println name;
       sh "${tool}/bin/sonar-scanner -Dsonar.login=admin -Dsonar.password=admin"};
     }
 
