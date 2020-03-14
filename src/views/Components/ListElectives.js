@@ -25,10 +25,12 @@ const ListElectives = props => {
     })
   }
   return (
-    <div>
+    <div className="table">
       <Table striped bordered hover className="table-striped table-light">
         <thead>
-          <tr>Preference 1</tr>
+          <tr>
+            <th>Preference 1</th>
+          </tr>
           <tr>
             <th>course_code </th>
             <th>course </th>
@@ -42,7 +44,9 @@ const ListElectives = props => {
       </Table>
       <Table striped bordered hover className="table-striped table-light">
         <thead>
-          <tr>Preference 2</tr>
+          <tr>
+            <th>Preference 2</th>
+          </tr>
           <tr>
             <th>course_code </th>
             <th>course </th>
@@ -56,7 +60,9 @@ const ListElectives = props => {
       </Table>
       <Table striped bordered hover className="table-striped table-light">
         <thead>
-          <tr>Preference 3</tr>
+          <tr>
+            <th>Preference 3</th>
+          </tr>
           <tr>
             <th>course_code </th>
             <th>course </th>
