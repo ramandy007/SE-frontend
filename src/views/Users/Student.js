@@ -11,6 +11,8 @@ import {
   CardImg
 } from "reactstrap"
 
+import { Link } from "react-router-dom"
+
 import student_image from "../../assets/student.jpeg"
 
 const container_style = {
@@ -63,7 +65,9 @@ const Student = props => {
 
             <CardBody className="text-center">
               <CardText>Date placeholder.</CardText>
-              <Button>Select Electives</Button>
+              <Link to="/list_electives">
+                <Button>Select Electives</Button>
+              </Link>
             </CardBody>
           </Card>
         </Col>

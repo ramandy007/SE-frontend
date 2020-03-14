@@ -18,13 +18,14 @@ export const UploadElectivesSingle = data => {
   })
 }
 
-export const GetElectives = (dept, sem) => {
+export const GetElectives = (dept, sem, setElectiveList) => {
   return axios
     .post("/student/viewElectives", {
       department: dept,
       sem: sem
     })
     .then(res => {
+      setElectiveList(res.data)
       console.log(res)
     })
 }

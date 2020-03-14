@@ -14,6 +14,7 @@ import ProtectedRoute from "./views/Components/ProtectedRoutes"
 import ProtectedRouteStudent from "./views/Components/ProtectedRouteStudent"
 import Home from "../src/views/Components/Home"
 import Logout from "./views/Components/Logout"
+import ListElectives from "./views/Components/ListElectives"
 
 function App() {
   const [perm, setPerm] = useState(false)
@@ -54,6 +55,7 @@ function App() {
           handleLogout={handleLogout}
           user={studata}
         ></ProtectedRouteStudent>
+
         {/* <Route
           path="/admin"
           name="Admin page"
@@ -97,6 +99,15 @@ function App() {
           handleLogout={handleLogout}
           user={localStorage.getItem("uid")}
         ></ProtectedRoute>
+
+        <ProtectedRouteStudent
+          exact
+          path="/list_electives"
+          name="Elective listing Page"
+          component={ListElectives}
+          handleLogout={handleLogout}
+          studata={studata}
+        ></ProtectedRouteStudent>
         {console.log(localStorage.getItem("uid"))}
         <Route exact path="/Unauthorized" component={Unauthorized} />
       </Switch>
