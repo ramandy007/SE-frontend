@@ -6,7 +6,7 @@ pipeline {
   stages {
      stage('SonarQube Analysis') {
      
-    steps{
+    steps{script{
       
       env.home = tool name: 'Sonar_Qube', type: 'hudson.plugins.sonar.SonarRunnerInstallation';
 
@@ -14,7 +14,7 @@ pipeline {
     
        
       sh "${home}/bin/sonar-scanner -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=admin -Dsonar.password=admin"};
-    }
+    }}
 
 }
     stage('Install dependencies'){
