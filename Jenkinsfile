@@ -13,7 +13,7 @@ pipeline {
      withSonarQubeEnv(credentialsId: 'sonarqube-secret',installationName:'sonarqube') {
     
        
-      sh "${home}/bin/sonar-scanner   -Dsonar.host.url=http://electivemanagement.eastus.cloudapp.azure.com:9000 \ -Dsonar.login=admin -Dsonar.password=admin"};
+      sh "${home}/bin/sonar-scanner   -D sonar.host.url=http://electivemanagement.eastus.cloudapp.azure.com:9000 \ -D sonar.login=admin -D sonar.password=admin"};
     }}
 
 }
