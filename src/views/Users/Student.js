@@ -1,8 +1,7 @@
-import React from "react";
+import React from "react"
 import {
   Card,
   Button,
-  CardTitle,
   CardText,
   Row,
   Col,
@@ -10,11 +9,15 @@ import {
   CardBody,
   Container,
   CardImg
-} from "reactstrap";
+} from "reactstrap"
+
+import { Link } from "react-router-dom"
+
+import student_image from "../../assets/student.jpeg"
 
 const container_style = {
   margin: "5%"
-};
+}
 
 const Student = props => {
   return (
@@ -22,21 +25,21 @@ const Student = props => {
       <Row className="justify-content-center">
         <Col md="4">
           <Card>
-            <CardImg
-              src="/home/darknorth/Software engineering/elective-management/assets/proof.jpeg"
-              alt="Card image cap"
-            ></CardImg>
+            <CardImg src={student_image} alt="Card image cap"></CardImg>
           </Card>
         </Col>
         <Col md="6" className="text-center">
           <Card>
             <CardHeader tag="h4">Details :</CardHeader>
             <CardBody>
-              <CardText>Name :placeholder</CardText>
-              <CardText>Roll.No: placeholder</CardText>
-              <CardText>Section:placeholder</CardText>
-              <CardText>Semester:placeholder</CardText>
-              <CardText>Department:placeholder</CardText>
+              <CardText>Name :{props.studata.name}</CardText>
+              <CardText>Roll.No: {props.studata.rollno}</CardText>
+              <CardText>Section:{props.studata.section}</CardText>
+              <CardText>Semester:{props.studata.semester}</CardText>
+              <CardText>
+                Department:
+                {props.studata.rollno.match(/\D\D\D/g)[0].toUpperCase()}
+              </CardText>
             </CardBody>
           </Card>
         </Col>
@@ -62,13 +65,15 @@ const Student = props => {
 
             <CardBody className="text-center">
               <CardText>Date placeholder.</CardText>
-              <Button>Select Electives</Button>
+              <Link to="/list_electives">
+                <Button>Select Electives</Button>
+              </Link>
             </CardBody>
           </Card>
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default Student;
+export default Student

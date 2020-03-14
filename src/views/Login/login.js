@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import axios from "axios"
+import "../Login/loginstyle.css"
 import {
   Button,
   Card,
@@ -14,46 +15,63 @@ import {
   InputGroupAddon,
   InputGroupText,
   Row
-} from "reactstrap";
+} from "reactstrap"
 
 class Login extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       user_name: "",
-      password: ""
-    };
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
-    // this.Auth = new AuthService();
+      password: "",
+      errmsg: null
+    }
+    this.onSubmit = this.onSubmit.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value })
   }
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     // if (this.Auth.loggedIn()) this.props.history.replace("/");
   }
 
   onSubmit(e) {
     if (this.state.user_name === "admin" && this.state.password === "admin") {
-      localStorage.setItem("uid", this.state.user_name);
-      localStorage.setItem("perm", "admin");
-      this.props.history.push("/admin");
+      localStorage.setItem("uid", this.state.user_name)
+      localStorage.setItem("perm", "admin")
+      this.props.history.push("/admin")
+
+      this.props.setPerm("admin")
+      this.props.setName("admin")
     } else {
       axios
-        .post("/login", {
+        .post("/Login", {
           rollno: this.state.user_name,
           pass: this.state.password
         })
         .then(res => {
-          if (res === true) {
-            localStorage.setItem("uid", this.state.user_name);
-            localStorage.setItem("perm", "student");
-            this.props.history.push("/student");
-          } else alert("wrong password");
-        });
+          console.log(res)
+
+          if (res.data === "NO SUCH ROLL NUMBER EXISTS")
+            this.setState({
+              errmsg: "No Such Roll Number Exists",
+              user_name: "",
+              password: ""
+            })
+          else if (res.data === "WRONG PASSWORD")
+            this.setState({ errmsg: "Wrong Password Try Again", password: "" })
+          else {
+            this.props.setStuData(res.data)
+
+            localStorage.setItem("uid", res.data.name)
+            localStorage.setItem("perm", "student")
+            this.props.setPerm("student")
+            this.props.setName(this.state.user_name)
+            this.props.history.push("/student")
+          }
+        })
     }
-    e.preventDefault();
+    e.preventDefault()
   }
 
   render() {
@@ -77,7 +95,7 @@ class Login extends Component {
                         <Input
                           name="user_name"
                           type="text"
-                          placeholder="Username"
+                          placeholder="RollNo"
                           autoComplete="username"
                           value={this.state.user_name}
                           onChange={this.onChange}
@@ -120,24 +138,13 @@ class Login extends Component {
                     </Form>
                   </CardBody>
                 </Card>
-                <Card
-                  className="text-white bg-primary py-5 d-md-down-none"
-                  style={{ width: "44%" }}
-                >
+                <Card className="signc" style={{ width: "44%" }}>
                   <CardBody className="text-center">
                     <div>
-                      <h2>Sign up</h2>
-                      <p>Contact Admin to register a new account.</p>
-                      <Link to="/register">
-                        <Button
-                          color="primary"
-                          className="mt-3"
-                          active
-                          tabIndex={-1}
-                        >
-                          Email Now!
-                        </Button>
-                      </Link>
+                      <h2>
+                        {" "}
+                        {this.state.errmsg ? this.state.errmsg : "Welcome"}
+                      </h2>
                     </div>
                   </CardBody>
                 </Card>
@@ -146,8 +153,8 @@ class Login extends Component {
           </Row>
         </Container>
       </div>
-    );
+    )
   }
 }
 
-export default Login;
+export default Login

@@ -1,14 +1,33 @@
-import axios from "axios";
-import { Alert } from "reactstrap";
+import axios from "axios"
+import { Alert } from "reactstrap"
 
-const UploadElectives = data => {
+export const UploadElectives = data => {
   return axios
     .post("/addElectives", {
       data: data
     })
     .then(res => {
-      Alert("uploaded sucessfully");
-      console.log("uploaded sucessfully");
-    });
-};
-export default UploadElectives;
+      Alert("uploaded sucessfully")
+      console.log("uploaded sucessfully")
+    })
+}
+export const UploadElectivesSingle = data => {
+  return axios.post("/addOneElective", { ...data }).then(res => {
+    Alert("uploaded sucessfully")
+    console.log("uploaded sucessfully")
+  })
+}
+
+export const GetElectives = (dept, sem, setElectiveList) => {
+  return axios
+    .post("/student/viewElectives", {
+      department: dept,
+      sem: sem
+    })
+    .then(res => {
+      setElectiveList(res.data)
+      console.log(res)
+    })
+}
+
+// module.exports = { UploadElectives, UploadElectivesSingle }

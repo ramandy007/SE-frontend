@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 import {
   Button,
   Card,
   CardBody,
-  CardFooter,
   Col,
   Container,
   Form,
@@ -12,26 +11,37 @@ import {
   InputGroupAddon,
   InputGroupText,
   Row
-} from "reactstrap";
+} from "reactstrap"
 
-import register from "../../../Functions/Register";
+import register from "../../../Functions/Register"
 
 class Register extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       name: "",
       rollno: "",
       pass: "",
       sec: "",
-      sem: ""
-    };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+      sem: "",
+      msg: ""
+    }
+    this.sendmessage = this.sendmessage.bind(this)
+    this.setmessage = this.setmessage.bind(this)
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
   onChange(e) {
     // console.log(e.target.value);
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value })
+  }
+  sendmessage(msg1) {
+    console.log(msg1)
+    this.setState({ msg: msg1 })
+  }
+  setmessage() {
+    if (this.state.msg) return <InputGroupText>{this.state.msg}</InputGroupText>
+    else return
   }
   onSubmit(e) {
     const user = {
@@ -40,13 +50,14 @@ class Register extends Component {
       pass: this.state.pass,
       sec: this.state.sec,
       sem: this.state.sem
-    };
+    }
 
-    console.log(user);
+    console.log(user)
 
-    register(user);
-    e.preventDefault();
-    this.props.history.replace("/");
+    register(user, this.sendmessage)
+
+    e.preventDefault()
+    // this.props.history.replace("/");
   }
   render() {
     return (
@@ -114,6 +125,7 @@ class Register extends Component {
                         autoComplete="section"
                         maxLength="1"
                         name="sec"
+                        pattern="^[a-zA-Z]+$"
                         value={this.state.sec}
                         onChange={this.onChange}
                       />
@@ -140,11 +152,11 @@ class Register extends Component {
                       type="submit"
                       block
                       disabled={
-                        this.state.name.length == 0 ||
-                        this.state.rollno.length == 0 ||
-                        this.state.pass.length == 0 ||
-                        this.state.sec.length == 0 ||
-                        this.state.sem.length == 0
+                        this.state.name.length === 0 ||
+                        this.state.rollno.length === 0 ||
+                        this.state.pass.length === 0 ||
+                        this.state.sec.length === 0 ||
+                        this.state.sem.length === 0
                       }
                     >
                       Create Account
@@ -153,11 +165,12 @@ class Register extends Component {
                 </CardBody>
               </Card>
             </Col>
+            {this.setmessage()}
           </Row>
         </Container>
       </div>
-    );
+    )
   }
 }
 
-export default Register;
+export default Register

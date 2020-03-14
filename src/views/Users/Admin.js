@@ -2,14 +2,12 @@ import React from "react";
 import {
   Card,
   Button,
-  CardTitle,
   CardText,
   Row,
   Col,
   CardHeader,
   CardBody,
-  Container,
-  CardImg
+  Container
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import UploadModal from "../Components/Modals";
