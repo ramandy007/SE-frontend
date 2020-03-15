@@ -44,14 +44,16 @@ class Register extends Component {
     else return
   }
   onSubmit(e) {
+    e.preventDefault()
     const user = {
       name: this.state.name,
       rollno: this.state.rollno,
       pass: this.state.pass,
       sec: this.state.sec,
-      sem: this.state.sem
+      sem: this.state.sem,
+      dept: this.state.rollno.match(/\D\D\D/g)[0].toUpperCase()
     }
-
+    console.log(this.state.rollno.match(/\D\D\D/g)[0].toUpperCase())
     console.log(user)
 
     register(user, this.sendmessage)

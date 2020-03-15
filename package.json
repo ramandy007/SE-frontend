@@ -1,7 +1,6 @@
 {
   "name": "elective-management",
   "version": "0.1.0",
-  "homepage": "https://ramandy007.github.io/SE-frontend/",
   "private": true,
   "dependencies": {
     "@coreui/coreui": "^2.1.12",
@@ -22,9 +21,7 @@
     "fibers": "^4.0.2",
     "flag-icon-css": "^3.3.0",
     "font-awesome": "^4.7.0",
-
     "jquery": "^3.4.1",
-
     "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -41,10 +38,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
-
     "eject": "react-scripts eject",
     "integrate": "CI=false npm run build"
-
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -65,5 +60,5 @@
     "jest": "^24.9.0",
     "react-test-renderer": "^16.12.0"
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:5000"
 }

@@ -8,13 +8,14 @@ const register = async (newUser, sendmessage) => {
       rollno: newUser.rollno,
       pass: newUser.pass,
       sec: newUser.sec,
-      sem: newUser.sem
+      sem: newUser.sem,
+      dept: newUser.dept
     })
     .then(res => {
       if (res.data === true) {
-        console.log("Registered" + newUser.name + " " + newUser.rollno)
-        sendmessage("Registered" + newUser.name + " " + newUser.rollno)
-      } else if (res.data === false) {
+        console.log("Registered " + newUser.name + " " + newUser.rollno)
+        sendmessage("Registered " + newUser.name + " " + newUser.rollno)
+      } else if (res.data === "USER ALREADY EXISTS") {
         console.log("Unable to register User already exists")
         sendmessage(
           "User " + newUser.name + " with " + newUser.rollno + " already exists"
