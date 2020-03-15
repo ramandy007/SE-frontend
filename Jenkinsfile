@@ -42,7 +42,7 @@ pipeline {
        stage('Deploy on Heroku') { 
             steps {
                 
-                sh 'git push origin/Heroku-deploy origin/master'
+                sh 'git push  remote master:Heroku-deploy'
             }
         }
     }
