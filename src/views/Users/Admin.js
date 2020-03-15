@@ -9,6 +9,7 @@ import {
   CardBody,
   Container
 } from "reactstrap";
+import '../Users/usercss.css'
 import { Link } from "react-router-dom";
 import UploadModal from "../Components/Modals";
 
@@ -21,8 +22,8 @@ const Admin = props => {
     <Container style={container_style}>
       <Row className="justify-content-center">
         <Col md="4" sm={{ size: 6, order: 2, offset: 1 }}>
-          <Card>
-            <CardHeader className="text-center" tag="h4">
+          <Card style={{backgroundColor:'#4f4f4f', color:'#fff', borderColor:'#3f3f3f'}}>
+            <CardHeader className="text-center" tag="h4" style={{backgroundColor:'#3f3f3f', color:'#fff', borderColor:'#3f3f3f'}}>
               Upload elective lists
             </CardHeader>
             <CardBody className="text-center">
@@ -32,19 +33,20 @@ const Admin = props => {
           </Card>
         </Col>
         <Col md="4" sm={{ size: 6, order: 2, offset: 1 }}>
-          <Card>
-            <CardHeader className="text-center" tag="h4">
+          <Card style={{backgroundColor:'#4f4f4f', color:'#fff', borderColor:'#3f3f3f'}}>
+            <CardHeader className="text-center" tag="h4" style={{backgroundColor:'#3f3f3f', color:'#fff', borderColor:'#3f3f3f'}}>
               Register Users
             </CardHeader>
 
             <CardBody className="text-center">
+            <CardText style={{color:'#fff'}}>Create new login credentials</CardText>
               <Link to={"/register"}>
                 <Button>Register Students </Button>
               </Link>
             </CardBody>
-            <CardBody className="text-center">
-              <Button>Register Teachers</Button>
-            </CardBody>
+            {/* <CardBody className="text-center">
+              <Button style={{backgroundColor:'#209e91',color:'#fff'}}>Register Teachers</Button>
+            </CardBody> */}
           </Card>
         </Col>
       </Row>

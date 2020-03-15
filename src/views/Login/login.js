@@ -84,7 +84,7 @@ class Login extends Component {
                 <Card className="p-4">
                   <CardBody>
                     <Form onSubmit={this.onSubmit}>
-                      <h1>Login</h1>
+                      <h1 >Login</h1>
                       <p className="text-muted">Sign In to your account</p>
                       <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend">
@@ -139,9 +139,9 @@ class Login extends Component {
                   </CardBody>
                 </Card>
                 <Card className="signc" style={{ width: "44%" }}>
-                  <CardBody className="text-center">
+                  <CardBody className="text-center" >
                     <div>
-                      <h2>
+                      <h2 style={{verticalAlign: "middle"}}>
                         {" "}
                         {this.state.errmsg ? this.state.errmsg : "Welcome"}
                       </h2>
