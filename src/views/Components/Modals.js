@@ -161,7 +161,12 @@ const UploadModal = props => {
               <legend>Select Department</legend>
               <FormGroup check>
                 <Label check>
-                  <Input type="radio" name="option" />
+                  <Input
+                    type="radio"
+                    name="option"
+                    value="MECH"
+                    onClick={onChange}
+                  />
                   MECH
                 </Label>
               </FormGroup>
