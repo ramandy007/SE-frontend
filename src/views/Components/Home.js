@@ -19,7 +19,7 @@ var Home = () => {
               You will be allowed to choose any three electives as your top
               three preference
             </p>
-            <p>You will be allowed to change preferences only one more time</p>
+            <p>You will be allowed to make changes to the preferences</p>
             <p>
               After a particular deadline, you will not be allowed to change
               your preference
