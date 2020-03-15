@@ -63,11 +63,18 @@ const UploadModal = props => {
   }
   const onSubmit = e => {
     console.log(file)
+    console.log({
+      sem,
+      capacity,
+      course_code,
+      course,
+      department
+    })
     if (file) UploadElectives(file)
     else
       UploadElectivesSingle({
         sem,
-        // , capacity
+        capacity,
         course_code,
         course,
         department
@@ -164,7 +171,7 @@ const UploadModal = props => {
                     type="radio"
                     name="option"
                     value="CSE"
-                    onChange={onChange}
+                    onClick={onChange}
                   />
                   CSE
                 </Label>
@@ -175,7 +182,7 @@ const UploadModal = props => {
                     type="radio"
                     name="option"
                     value="CHEM"
-                    onChange={onChange}
+                    onClick={onChange}
                   />{" "}
                   CHEM
                 </Label>
@@ -186,7 +193,7 @@ const UploadModal = props => {
                     type="radio"
                     name="option"
                     value="EEE"
-                    onChange={onChange}
+                    onClick={onChange}
                   />{" "}
                   EEE
                 </Label>
@@ -197,7 +204,7 @@ const UploadModal = props => {
                     type="radio"
                     name="option"
                     value="ECE"
-                    onChange={onChange}
+                    onClick={onChange}
                   />{" "}
                   ECE
                 </Label>
