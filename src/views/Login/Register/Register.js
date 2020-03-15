@@ -50,8 +50,7 @@ class Register extends Component {
       rollno: this.state.rollno,
       pass: this.state.pass,
       sec: this.state.sec,
-      sem: this.state.sem,
-      dept: this.state.rollno.match(/\D\D\D/g)[0].toUpperCase()
+      sem: this.state.sem
     }
     console.log(this.state.rollno.match(/\D\D\D/g)[0].toUpperCase())
     console.log(user)
