@@ -1,12 +1,27 @@
 import React, { useState, useEffect } from "react"
-import { GetElectives } from "../../Functions/AddElectives"
-import { Table, FormGroup, Input, Label } from "reactstrap"
+import { useHistory } from "react-router-dom"
+import {
+  GetElectives,
+  SendSelectedElectives
+} from "../../Functions/AddElectives"
+import {
+  Table,
+  FormGroup,
+  Input,
+  Label,
+  Button,
+  PopoverBody,
+  UncontrolledPopover
+} from "reactstrap"
 
 const ListElectives = props => {
-  const [pref1, setpref1] = useState(null)
-  const [pref2, setpref2] = useState(null)
-  const [pref3, setpref3] = useState(null)
+  const [pref1, setpref1] = useState(false)
+  const [pref2, setpref2] = useState(false)
+  const [pref3, setpref3] = useState(false)
   const [electiveList, setElectiveList] = useState(null)
+  const [msg, setmsg] = useState(null)
+  let history = useHistory()
+
   useEffect(() => {
     GetElectives(
       props.studata.rollno.match(/\D\D\D/g)[0].toUpperCase(),
@@ -14,6 +29,23 @@ const ListElectives = props => {
       setElectiveList
     )
   }, [props.studata.rollno, props.studata.semester, setElectiveList])
+
+  const transferData = () => {
+    SendSelectedElectives(
+      {
+        rollno: props.studata.rollno,
+        elec1: pref1,
+        elec2: pref2,
+        elec3: pref3
+      },
+      setmsg
+    )
+  }
+
+  const valid_data = () => {
+    if (pref1 !== false && pref2 !== false && pref3 !== false) return false
+    else return true
+  }
 
   const renderTableData = num => {
     const setpref = e => {
@@ -105,6 +137,17 @@ const ListElectives = props => {
           <h1> fetching please wait.....</h1>
         )}
       </Table>
+      <Button onClick={transferData} disabled={valid_data()} id="PopoverFocus">
+        Submit
+      </Button>
+      <UncontrolledPopover
+        trigger="focus"
+        placement="bottom"
+        target="PopoverFocus"
+      >
+        <PopoverBody>{msg}</PopoverBody>
+      </UncontrolledPopover>
+      <Button onClick={() => history.goBack()}> back</Button>
     </div>
   )
 }
