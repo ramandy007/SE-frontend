@@ -39,6 +39,12 @@ pipeline {
                 sh 'npm build'
             }
         }
+       stage('Deploy on Heroku') { 
+            steps {
+                
+                sh 'git push Heroku-deploy master'
+            }
+        }
     }
 
 }
