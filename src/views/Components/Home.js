@@ -4,7 +4,7 @@ import "./Home.css"
 var Home = () => {
   return (
     <div className="home">
-      <table align="center">
+      <table align="center" className="flex-div">
         <tr>
           <td className="title">
             <p>Elective Management System</p>

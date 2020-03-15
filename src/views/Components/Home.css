@@ -1,22 +1,11 @@
 .home {
-  position: fixed;
-  /* top: auto; */
-  /* bottom: 0; */
-  /*left: 0;
-  right: 0; */
-  height: 100%;
+  height: auto;
+  width: auto;
   background-color: #08d9d6;
 }
-
-.home-table {
-  margin-top: 50px;
+.flex-div {
+  display: flex;
   text-align: center;
-  width: 70%;
-  height: 60%;
-}
-
-td {
-  padding: 20px;
 }
 
 h1 {
@@ -26,9 +15,19 @@ h1 {
   font-size: 50px;
 }
 
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 60px;
+    word-wrap: break-word;
+    background-color: aqua;
+  }
+}
 .title {
   font-family: "Montserrat", sans-serif;
   font-size: 80px;
+  word-wrap: break-word;
 }
 
 .instructions {
