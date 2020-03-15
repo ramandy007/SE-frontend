@@ -41,8 +41,8 @@ pipeline {
         }
        stage('Deploy on Heroku') { 
             steps {
-                env.git=git credentialsId: 'Github-Login', url: 'https://github.com/ramandy007/SE-frontend.git'
-                sh '${git} push  origin master:Heroku-deploy'
+                script{env.git=git credentialsId: 'Github-Login', url: 'https://github.com/ramandy007/SE-frontend.git'
+                sh '${git} push  origin master:Heroku-deploy'}
             }
         }
     }
