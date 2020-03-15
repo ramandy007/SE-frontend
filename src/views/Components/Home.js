@@ -1,15 +1,16 @@
 import React from "react"
 import "./Home.css"
+import { Col, Row } from "reactstrap"
 
 var Home = () => {
   return (
     <div className="home">
-      <table align="center">
-        <tr>
-          <td className="title">
-            <p>Elective Management System</p>
-          </td>
-          <td className="instructions">
+      <div>
+        <Row className="flex-div ">
+          <Col className="title flex-div">
+            <>Elective Management System</>
+          </Col>
+          <Col className="instructions">
             <h1>Instructions</h1>
             <p>
               The View Electives tab will allow you to view all the available
@@ -24,9 +25,9 @@ var Home = () => {
               After a particular deadline, you will not be allowed to change
               your preference
             </p>
-          </td>
-        </tr>
-      </table>
+          </Col>
+        </Row>
+      </div>
     </div>
   )
 }
