@@ -15,7 +15,7 @@ pipeline {
        
       sh "${home}/bin/sonar-scanner   -D sonar.host.url=http://electivemanagement.eastus.cloudapp.azure.com:9000  -D sonar.login=admin -D sonar.password=admin"};
     }}
-
+// 
 }
     stage('Install dependencies'){
       steps{
