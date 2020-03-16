@@ -39,11 +39,11 @@ pipeline {
                 sh 'npm build'
             }
         }
-       stage('Deploy on Heroku') { 
-            steps {
-                script{git credentialsId: 'Github-Login', url: 'https://github.com/ramandy007/SE-frontend.git'
-                sh 'git push  origin master:Heroku-deploy'}
-            }
+       //stage('Deploy on Heroku') { 
+            //steps {
+             //   script{git credentialsId: 'Github-Login', url: 'https://github.com/ramandy007/SE-frontend.git'
+           //     sh 'git push  origin master:Heroku-deploy'}
+         //   }
         }
     }
 
