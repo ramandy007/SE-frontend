@@ -8,7 +8,7 @@ var Home = () => {
       <div>
         <Row className="flex-div ">
           <Col className="title flex-div">
-            <>Elective Management System</>
+            <>EMS</>
           </Col>
           <Col className="instructions">
             <h1>Instructions</h1>
