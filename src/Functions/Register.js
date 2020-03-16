@@ -8,8 +8,7 @@ const register = async (newUser, sendmessage) => {
       rollno: newUser.rollno,
       pass: newUser.pass,
       sec: newUser.sec,
-      sem: newUser.sem,
-      dept: newUser.dept
+      sem: newUser.sem
     })
     .then(res => {
       if (res.data === true) {
