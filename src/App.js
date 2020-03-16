@@ -1,9 +1,7 @@
-
 import React, { useState } from "react"
 import "./App.scss"
 import Login from "./views/Login/login"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-
 
 import Navbar from "./views/Components/Navbar"
 import NavbarAdmin from "./views/Components/NavbarAdmin"
@@ -16,6 +14,7 @@ import ProtectedRoute from "./views/Components/ProtectedRoutes"
 import ProtectedRouteStudent from "./views/Components/ProtectedRouteStudent"
 import Home from "../src/views/Components/Home"
 import Logout from "./views/Components/Logout"
+import ChangeElectives from "./views/Components/ChangeElectives"
 import ListElectives from "./views/Components/ListElectives"
 
 function App() {
@@ -32,7 +31,6 @@ function App() {
     else return <Navbar />
   }
   return (
-
     <BrowserRouter>
       {navbar()}
 
@@ -112,13 +110,20 @@ function App() {
           handleLogout={handleLogout}
           studata={studata}
         ></ProtectedRouteStudent>
+
+        <ProtectedRouteStudent
+          exact
+          path="/change_electives"
+          name="Elective changing Page"
+          component={ChangeElectives}
+          handleLogout={handleLogout}
+          studata={studata}
+        ></ProtectedRouteStudent>
         {console.log(localStorage.getItem("uid"))}
         <Route exact path="/Unauthorized" component={Unauthorized} />
       </Switch>
-
     </BrowserRouter>
-  );
-
+  )
 }
 
 export default App

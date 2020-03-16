@@ -53,7 +53,10 @@ const Student = props => {
             </CardHeader>
             <CardBody className="text-center">
               <CardText>electives list placeholder</CardText>
-              <Button>Change electives</Button>
+
+              <Link to="change_electives">
+                <Button>Change electives</Button>
+              </Link>
             </CardBody>
           </Card>
         </Col>

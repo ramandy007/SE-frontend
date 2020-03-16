@@ -19,6 +19,16 @@ export const SendSelectedElectives = (data, setmsg) => {
     }
   })
 }
+
+export const SendChangedElectives = (data, setmsg) => {
+  return axios.post("/changeElectivePreference", data).then(res => {
+    if (res.data === true) setmsg("Preference submitted Successfully")
+    else if (res.data === false) {
+      setmsg("Failed to submit preferences")
+    }
+  })
+}
+
 export const UploadElectivesSingle = data => {
   return axios.post("/addOneElective", { ...data }).then(res => {
     Alert("uploaded sucessfully")
